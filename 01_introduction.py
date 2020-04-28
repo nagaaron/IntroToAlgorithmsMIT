@@ -43,17 +43,20 @@ def greedy_ascent(arr2,srow,scol):
         return (srow,scol)       
 
 # divide & conquer 2d
-row = int(len(arr2)//2)
-col= arr2[row].index(max(arr2[row]))
-def find_peak_dq2(arr2,row,col):
+
+def find_peak_dq2(arr2):
+    row = int(len(arr2)//2)
+    col= arr2[row].index(max(arr2[row]))
     if row > 0 and arr2[row][col] < arr2[row-1][col]:
-        return find_peak_dq2(arr2, row-1, col)
+        return find_peak_dq2(arr2[:row])
     elif row < (len(arr2)-1) and arr2[row][col] < arr2[row+1][col]:
-        return find_peak_dq2(arr2, row+1, col)
+        return find_peak_dq2(arr2[row+1:])
     else:
         return row,col , arr2[row][col]
-
+for i in arr2:
+    print(i)
     
+print(find_peak_dq2(arr2))
     
     
     
