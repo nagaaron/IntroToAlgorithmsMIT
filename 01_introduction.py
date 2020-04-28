@@ -25,6 +25,8 @@ arr2 = [[random.randint(0, 9) for _ in range(scale)] for _ in range(scale)]
 srow = random.randint(0,len(arr2)-1)
 scol = random.randint(0,len(arr2)-1)
 
+
+# broot force 2d
 def greedy_ascent(arr2,srow,scol):
     if srow > 0 and arr2[srow-1][scol] > arr2[srow][scol]:
         return(greedy_ascent(arr2, srow-1, scol))
@@ -40,10 +42,25 @@ def greedy_ascent(arr2,srow,scol):
     else:
         return (srow,scol)       
 
-     
-for i in arr2:
-    print(i)
-print(greedy_ascent(arr2, srow, scol))      
-                
+# divide & conquer 2d
+row = int(len(arr2)//2)
+col= arr2[row].index(max(arr2[row]))
+def find_peak_dq2(arr2,row,col):
+    if row > 0 and arr2[row][col] < arr2[row-1][col]:
+        return find_peak_dq2(arr2, row-1, col)
+    elif row < (len(arr2)-1) and arr2[row][col] < arr2[row+1][col]:
+        return find_peak_dq2(arr2, row+1, col)
+    else:
+        return row,col , arr2[row][col]
+
+    
+    
+    
+    
+    
+    
+    
+
+    
             
             
